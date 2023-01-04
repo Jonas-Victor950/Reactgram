@@ -9,6 +9,7 @@ import mongoDB from "./database/app";
 // Routes
 import router from "./routes/Router";
 import Logger from "./database/logger";
+import routerUser from "./routes/UserRoutes";
 
 async function main() {
   const app = express();
