@@ -4,7 +4,7 @@ interface IUser {
   name: string;
   email: string;
   password: string;
-  profileImage?: string;
+  profileImage: string;
   bio?: string;
 }
 

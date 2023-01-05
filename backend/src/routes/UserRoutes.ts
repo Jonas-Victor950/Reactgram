@@ -8,7 +8,7 @@ import { register, login, getCurrentUser, update } from "../controllers/UserCont
 import validate from "../middlewares/handleValidation";
 import {userCreateValidation, loginValidation, userUpdateValidation} from "../validations/UserValidations";
 import authGuard from "../middlewares/authGuard"
-import imageUpload from "../middlewares/imageUpload";
+import {imageUpload} from "../middlewares/imageUpload";
 
 // Routes
 routerUser.post("/register", userCreateValidation(), validate, register);
