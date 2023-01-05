@@ -6,8 +6,9 @@ import { register } from "../controllers/UserController";
 
 // Middlewares
 import validate from "../middlewares/handleValidation";
+import userCreateValidation from "../validations/UserValidations";
 
 // Routes
-routerUser.post("/register", validate, register)
+routerUser.post("/register", userCreateValidation(), validate, register);
 
-export default routerUser
+export default routerUser;
