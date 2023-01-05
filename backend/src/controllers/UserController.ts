@@ -36,41 +36,50 @@ const register = async (req, res) => {
   });
 
   // If user was created successfully, return the token
-  if(!newUser) {
-    res.status(422).json({errors: ["Houve um erro, por favor tente mais tarde."]})
-    return
+  if (!newUser) {
+    res
+      .status(422)
+      .json({ errors: ["Houve um erro, por favor tente mais tarde."] });
+    return;
   }
 
   res.status(201).json({
     _id: newUser._id,
-    token: generateToken(newUser._id)
-  })
+    token: generateToken(newUser._id),
+  });
 };
 
 // Sign user in
 const login = async (req, res) => {
-  const {email, password} = req.body
+  const { email, password } = req.body;
 
-  const user = await User.findOne({email})
+  const user = await User.findOne({ email });
 
   // Check if user exists
-  if(!user) {
-    res.status(404).json({errors: ["Usuário não existe"]})
-    return
+  if (!user) {
+    res.status(404).json({ errors: ["Usuário não existe"] });
+    return;
   }
 
   // Check if password matches
-  if(!(await bcrypt.compare(password, user.password))) {
-    res.status(422).json({errors: ["Senha inválida"]})
-    return
+  if (!(await bcrypt.compare(password, user.password))) {
+    res.status(422).json({ errors: ["Senha inválida"] });
+    return;
   }
 
   // Return user with token
   res.status(201).json({
     _id: user._id,
     profileImage: user.profileImage,
-    token: generateToken(user._id)
-  })
-}
+    token: generateToken(user._id),
+  });
+};
 
-export { register, login };
+// Get current logged in user
+const getCurrentUser = async (req, res) => {
+  const user = req.user;
+
+  res.status(200).json(user);
+};
+
+export { register, login, getCurrentUser };

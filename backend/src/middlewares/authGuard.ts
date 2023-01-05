@@ -5,7 +5,7 @@ const jwtSecret = process.env.JWT_SECRET;
 
 const authGuard = async (req, res, next) => {
   const authHeader = req.headers["authorization"];
-  const token = authHeader && authHeader.split("")[1];
+  const token = authHeader && authHeader.split(" ")[1];
 
   // Check if header has a token
   if (!token) return res.status(401).json({ errors: ["Acesso negado!"] });
@@ -21,3 +21,5 @@ const authGuard = async (req, res, next) => {
     res.status(401).json({ errors: ["Token inválido."] });
   }
 };
+
+export default authGuard
