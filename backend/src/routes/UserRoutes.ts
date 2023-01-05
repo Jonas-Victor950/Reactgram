@@ -4,7 +4,10 @@ const routerUser = express.Router();
 // Controller
 import { register } from "../controllers/UserController";
 
+// Middlewares
+import validate from "../middlewares/handleValidation";
+
 // Routes
-routerUser.post("/register", register)
+routerUser.post("/register", validate, register)
 
 export default routerUser
