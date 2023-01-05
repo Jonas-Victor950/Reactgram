@@ -10,9 +10,9 @@ interface IUser {
 
 const userSchema = new Schema<IUser>(
   {
-    name: { type: String, required: true },
-    email: { type: String, required: true },
-    password: { type: String, required: true },
+    name: String,
+    email: String,
+    password: String,
     profileImage: String,
     bio: String,
   },

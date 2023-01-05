@@ -2,16 +2,18 @@ import express from "express";
 const routerUser = express.Router();
 
 // Controller
-import { register, login, getCurrentUser } from "../controllers/UserController";
+import { register, login, getCurrentUser, update } from "../controllers/UserController";
 
 // Middlewares
 import validate from "../middlewares/handleValidation";
-import {userCreateValidation, loginValidation} from "../validations/UserValidations";
+import {userCreateValidation, loginValidation, userUpdateValidation} from "../validations/UserValidations";
 import authGuard from "../middlewares/authGuard"
+import imageUpload from "../middlewares/imageUpload";
 
 // Routes
 routerUser.post("/register", userCreateValidation(), validate, register);
 routerUser.post("/login", loginValidation(), validate, login);
 routerUser.get("/profile", authGuard, getCurrentUser)
+routerUser.put("/", authGuard, userUpdateValidation(), validate, imageUpload.single("profileImage"), update)
 
 export default routerUser;
