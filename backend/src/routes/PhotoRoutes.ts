@@ -2,7 +2,7 @@ import express from "express";
 const routerPhoto = express.Router();
 
 // Controller
-import { deletePhoto, getAllPhotos, getUserPhotos, insertPhoto } from "../controllers/PhotoController";
+import { deletePhoto, getAllPhotos, getPhotoById, getUserPhotos, insertPhoto } from "../controllers/PhotoController";
 
 // Middlewares
 import { photoInsertValidation } from "../validations/PhotoValidations";
@@ -22,5 +22,6 @@ routerPhoto.post(
 routerPhoto.delete("/:id", authGuard, deletePhoto)
 routerPhoto.get("/", authGuard, getAllPhotos)
 routerPhoto.get("/user/:id", authGuard, getUserPhotos)
+routerPhoto.get("/:id", authGuard, getPhotoById)
 
 export default routerPhoto;
