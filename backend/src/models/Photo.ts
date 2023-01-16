@@ -6,7 +6,7 @@ interface IPhoto {
   likes: Array<any>;
   comments: Array<any>;
   userId: Types.ObjectId;
-  userName: string
+  userName: string;
 }
 
 const photoSchema = new Schema<IPhoto>(
@@ -15,8 +15,8 @@ const photoSchema = new Schema<IPhoto>(
     title: String,
     likes: Array,
     comments: Array,
-    userId: {type: Schema.Types.ObjectId, required: true, ref: "User"},
-    userName: String
+    userId: { type: Schema.Types.ObjectId, required: true, ref: "User" },
+    userName: String,
   },
   {
     timestamps: true,

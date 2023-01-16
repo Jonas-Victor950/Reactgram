@@ -22,4 +22,4 @@ const authGuard = async (req, res, next) => {
   }
 };
 
-export default authGuard
+export default authGuard;

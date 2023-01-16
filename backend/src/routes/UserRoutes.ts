@@ -32,6 +32,6 @@ routerUser.put(
   imageUpload.single("profileImage"),
   update
 );
-routerUser.get("/:id", getUserById)
+routerUser.get("/:id", getUserById);
 
 export default routerUser;

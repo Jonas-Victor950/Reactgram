@@ -16,4 +16,4 @@ const validate = (req: any, res: any, next: any) => {
   });
 };
 
-export default validate
+export default validate;
