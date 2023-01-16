@@ -3,6 +3,7 @@ const routerPhoto = express.Router();
 
 // Controller
 import {
+  commentPhoto,
   deletePhoto,
   getAllPhotos,
   getPhotoById,
@@ -16,6 +17,7 @@ import {
 import {
   photoInsertValidation,
   photoUpdateValidation,
+  commentValidation,
 } from "../validations/PhotoValidations";
 import authGuard from "../middlewares/authGuard";
 import validate from "../middlewares/handleValidation";
@@ -42,5 +44,12 @@ routerPhoto.put(
   updatePhoto
 );
 routerPhoto.put("/like/:id", authGuard, likePhoto);
+routerPhoto.put(
+  "/comment/:id",
+  authGuard,
+  commentValidation(),
+  validate,
+  commentPhoto
+);
 
 export default routerPhoto;
