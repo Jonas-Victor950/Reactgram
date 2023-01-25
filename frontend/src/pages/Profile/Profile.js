@@ -10,6 +10,9 @@ import { BsFillEyeFill, BsPencilFill, BsXLg } from "react-icons/bs";
 // hooks
 import { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+
+// Redux
 
 function Profile() {
   return <div>Profile</div>;
