@@ -20,8 +20,6 @@ import Profile from "./pages/Profile/Profile";
 function App() {
   const { auth, loading } = useAuth();
 
-  console.log(loading);
-
   if (loading) {
     return <p>Carregando...</p>;
   }
