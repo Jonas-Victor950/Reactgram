@@ -18,6 +18,7 @@ import {
   publishPhoto,
   resetMessage,
   getUserPhotos,
+  deletePhoto,
 } from "../../slices/photoSlice";
 
 function Profile() {
@@ -53,6 +54,12 @@ function Profile() {
     setImage(image);
   };
 
+  const resetComponentMessage = () => {
+    setTimeout(() => {
+      dispatch(resetMessage());
+    }, 2000);
+  };
+
   const submitHandle = (e) => {
     e.preventDefault();
 
@@ -74,9 +81,13 @@ function Profile() {
 
     setTitle("");
 
-    setTimeout(() => {
-      dispatch(resetMessage());
-    }, 2000);
+    resetComponentMessage();
+  };
+
+  // Delete a photo
+  const handleDelete = (id) => {
+    dispatch(deletePhoto(id));
+    resetComponentMessage();
   };
 
   if (loading) {
@@ -137,10 +148,10 @@ function Profile() {
                 {id === userAuth._id ? (
                   <div className="actions">
                     <Link to={`/photos/${photo._id}`}>
-                      <BsFillEyeFill/>
+                      <BsFillEyeFill />
                     </Link>
-                    <BsPencilFill/>
-                    <BsXLg/>
+                    <BsPencilFill />
+                    <BsXLg onClick={() => handleDelete(photo._id)} />
                   </div>
                 ) : (
                   <Link className="btn" to={`/photos/${photo._id}`}>
