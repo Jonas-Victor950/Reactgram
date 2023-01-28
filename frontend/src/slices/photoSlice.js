@@ -62,7 +62,7 @@ export const updatePhoto = createAsyncThunk(
   async (photoData, thunkAPI) => {
     const token = thunkAPI.getState().auth.user.token;
 
-    const data = await photoService.deletePhoto(
+    const data = await photoService.updatePhoto(
       { title: photoData.title },
       photoData.id,
       token
@@ -132,11 +132,11 @@ export const photoSlice = createSlice({
         state.error = action.payload;
         state.photo = {};
       })
-      .addCase(deletePhoto.pending, (state) => {
+      .addCase(updatePhoto.pending, (state) => {
         state.loading = true;
         state.error = false;
       })
-      .addCase(deletePhoto.fulfilled, (state, action) => {
+      .addCase(updatePhoto.fulfilled, (state, action) => {
         state.loading = false;
         state.success = true;
         state.error = null;
@@ -149,7 +149,7 @@ export const photoSlice = createSlice({
 
         state.message = action.payload.message;
       })
-      .addCase(deletePhoto.rejected, (state, action) => {
+      .addCase(updatePhoto.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
         state.photo = {};
