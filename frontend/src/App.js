@@ -54,11 +54,11 @@ function App() {
             ></Route>
             <Route
               path="/search"
-              element={auth ? <Photo /> : <Navigate to="/login" />}
+              element={auth ? <Search /> : <Navigate to="/login" />}
             ></Route>
             <Route
               path="/photos/:id"
-              element={auth ? <Search /> : <Navigate to="/login" />}
+              element={auth ? <Photo /> : <Navigate to="/login" />}
             ></Route>
           </Routes>
         </div>
